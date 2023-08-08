@@ -2,10 +2,14 @@
 
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/RohanPoojary/go-terminator)](https://goreportcard.com/report/github.com/RohanPoojary/go-terminator)
+[![Go Reference](https://pkg.go.dev/badge/github.com/RohanPoojary/go-terminator.svg)](https://pkg.go.dev/github.com/RohanPoojary/go-terminator)
+[![Test Cases](https://github.com/RohanPoojary/go-terminator/actions/workflows/run-tests.yaml/badge.svg)](https://github.com/RohanPoojary/go-terminator/actions/workflows/run-tests.yaml)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/RohanPoojary/go-terminator/blob/main/LICENSE)
 
 
 The `go-terminator` package provides a utility in Go for gracefully terminating processes by closing registered resources when a termination signal is received.
+
+[Read Docs](https://pkg.go.dev/github.com/RohanPoojary/go-terminator)
 
 ## Table of Contents
 
@@ -16,7 +20,8 @@ The `go-terminator` package provides a utility in Go for gracefully terminating 
   - [Adding Resources](#adding-resources)
   - [Setting Callback](#setting-callback)
   - [Waiting for Termination](#waiting-for-termination)
-- [Termination Result Structure](#terminationresult-structure)
+  - [Termination Result Structure](#terminationresult-structure)
+- [Complete Example](#complete-example)
 - [Contributing](#contributing)
 - [License](#license)
 
