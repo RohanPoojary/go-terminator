@@ -86,6 +86,7 @@ term.SetCallback(func(result terminator.TerminationResult) {
 ### Waiting for Termination
 
 The Wait method allows you to wait for the termination process to complete with a specified timeout duration.
+Usually wrapped inside defer after initialisation.
 
 ```go
 
@@ -108,6 +109,7 @@ The TerminationResult structure provides information about the termination proce
 ## Complete Example
 
 ```go
+
 package main
 
 import (
@@ -123,6 +125,17 @@ func main() {
 	// Create a new terminator instance with the specified termination signals.
 	closeSignals := []os.Signal{os.Interrupt, os.Kill}
 	term := terminator.NewTerminator(closeSignals)
+
+	defer func() {
+		fmt.Println("Waiting for signal upto 10 seconds...")
+		// Wait for the termination process to complete.
+		success := term.Wait(10 * time.Second)
+		if success {
+			fmt.Println("Termination completed successfully.")
+		} else {
+			fmt.Println("Termination timed out.")
+		}
+	}()
 
 	// Register resources to be closed gracefully.
 	term.Add("Database Connection", func(ctx context.Context) error {
@@ -146,15 +159,7 @@ func main() {
 		fmt.Println("Termination completed. Result:", result)
 	})
 
-
-	fmt.Println("Waiting for signal upto 10 seconds...")
-	// Wait for the termination process to complete.
-	success := term.Wait(10 * time.Second)
-	if success {
-		fmt.Println("Termination completed successfully.")
-	} else {
-		fmt.Println("Termination timed out.")
-	}
+	// Your running application ...
 
 	fmt.Println("Exiting the program.")
 }
