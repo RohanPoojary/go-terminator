@@ -1,11 +1,11 @@
-# Terminator - Graceful Process Termination Utility
+# GO Terminator - Graceful Process Termination Utility
 
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/RohanPoojary/go-terminator)](https://goreportcard.com/report/github.com/RohanPoojary/go-terminator)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/your-username/terminator/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/RohanPoojary/go-terminator/blob/main/LICENSE)
 
 
-The `terminator` package provides a utility in Go for gracefully terminating processes by closing registered resources when a termination signal is received.
+The `go-terminator` package provides a utility in Go for gracefully terminating processes by closing registered resources when a termination signal is received.
 
 ## Table of Contents
 
@@ -22,7 +22,7 @@ The `terminator` package provides a utility in Go for gracefully terminating pro
 
 ## Introduction
 
-When building long-running applications or services, it's important to ensure that resources are properly cleaned up when the process is terminated. The `terminator` package helps manage the graceful termination of your application by providing a simple mechanism to register resources that need to be closed when the process receives termination signals.
+When building long-running applications or services, it's important to ensure that resources are properly cleaned up when the process is terminated. The `go-terminator` package helps manage the graceful termination of your application by providing a simple mechanism to register resources that need to be closed when the process receives termination signals.
 
 ## Installation
 
@@ -41,7 +41,7 @@ To create a new instance of the terminator, you need to specify the signals that
 
 import (
 	"os"
-	"github.com/your-username/terminator"
+	"github.com/RohanPoojary/go-terminator"
 )
 
 func main() {
