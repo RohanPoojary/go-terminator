@@ -25,4 +25,4 @@ jobs:
         run: go get .
 
       - name: Test with the Go CLI
-        run: go test
+        run: go test -v
