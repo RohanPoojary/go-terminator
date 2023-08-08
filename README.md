@@ -26,7 +26,7 @@ When building long-running applications or services, it's important to ensure th
 
 ## Installation
 
-To use the `terminator` package, import it in your Go code:
+To use the `go-terminator` package, import it in your Go code:
 
 ```shell
 go get "github.com/RohanPoojary/go-terminator"
@@ -99,6 +99,63 @@ The TerminationResult structure provides information about the termination proce
 
 * `Signal`: The termination signal received.
 * `Result`: A slice of TerminationResultData containing information about each closed resource.
+
+## Complete Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	"time"
+
+	"github.com/RohanPoojary/go-terminator"
+)
+
+func main() {
+	// Create a new terminator instance with the specified termination signals.
+	closeSignals := []os.Signal{os.Interrupt, os.Kill}
+	term := terminator.NewTerminator(closeSignals)
+
+	// Register resources to be closed gracefully.
+	term.Add("Database Connection", func(ctx context.Context) error {
+		// Simulate closing the database connection.
+		fmt.Println("Closing database connection...")
+		time.Sleep(2 * time.Second)
+		fmt.Println("Database connection closed.")
+		return nil
+	})
+
+	term.Add("File Writer", func(ctx context.Context) error {
+		// Simulate closing the file writer.
+		fmt.Println("Closing file writer...")
+		time.Sleep(1 * time.Second)
+		fmt.Println("File writer closed.")
+		return nil
+	})
+
+	// Set a callback function to execute after resources are closed.
+	term.SetCallback(func(result terminator.TerminationResult) {
+		fmt.Println("Termination completed. Result:", result)
+	})
+
+
+	fmt.Println("Waiting for signal upto 10 seconds...")
+	// Wait for the termination process to complete.
+	success := term.Wait(10 * time.Second)
+	if success {
+		fmt.Println("Termination completed successfully.")
+	} else {
+		fmt.Println("Termination timed out.")
+	}
+
+	fmt.Println("Exiting the program.")
+}
+
+
+```
 
 ## Contributing
 
